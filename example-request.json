@@ -1,0 +1,152 @@
+{
+  "input": {
+    "workflow": {
+      "3": {
+        "inputs": {
+          "seed": 0,
+          "steps": 30,
+          "cfg": 6.5,
+          "sampler_name": "ddpm",
+          "scheduler": "karras",
+          "denoise": 1,
+          "model": [
+            "18",
+            0
+          ],
+          "positive": [
+            "6",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "latent_image": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "4": {
+        "inputs": {
+          "ckpt_name": "sd15/realisticVisionV51_v51VAE.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      },
+      "5": {
+        "inputs": {
+          "value": 512
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "EmptyLatentImage"
+        }
+      },
+      "6": {
+        "inputs": {
+          "text": "closeup of a beautiful woman wearing a black dress on the seaside\n\nserene, sunset, spring, high quality, detailed, diffuse light",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "7": {
+        "inputs": {
+          "text": "blurry, noisy, messy, lowres, jpeg, artifacts, ill, distorted, malformed, naked",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "3",
+            0
+          ],
+          "vae": [
+            "4",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "9": {
+        "inputs": {
+          "filename_prefix": "IPAdapter",
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "12": {
+        "inputs": {
+          "image": "rosario_4.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "18": {
+        "inputs": {
+          "value": 1,
+          "model": [
+            "20",
+            0
+          ],
+          "ipadapter": [
+            "20",
+            1
+          ],
+          "image": [
+            "12",
+            0
+          ]
+        },
+        "class_type": "IPAdapterFaceID",
+        "_meta": {
+          "title": "IPAdapterFaceID"
+        }
+      },
+      "20": {
+        "inputs": {
+          "text": "FACEID PLUS V2",
+          "model": [
+            "4",
+            0
+          ]
+        },
+        "class_type": "IPAdapterUnifiedLoaderFaceID",
+        "_meta": {
+          "title": "IPAdapterUnifiedLoaderFaceID"
+        }
+      }
+    }
+  }
+}
